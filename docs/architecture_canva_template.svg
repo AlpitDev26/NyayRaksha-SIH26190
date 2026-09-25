@@ -1,0 +1,305 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" style="background:#F7F4EE; font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;">
+  <defs>
+    <!-- Warm Beige & White Gradients -->
+    <linearGradient id="bgBeige" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCFAF6"/>
+      <stop offset="50%" stop-color="#F7F4EE"/>
+      <stop offset="100%" stop-color="#EFECE4"/>
+    </linearGradient>
+
+    <linearGradient id="cardWhite" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#FCFAF7"/>
+    </linearGradient>
+
+    <linearGradient id="gatewayBeige" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F0FDF4"/>
+      <stop offset="100%" stop-color="#DCFCE7"/>
+    </linearGradient>
+
+    <linearGradient id="engineBeige" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FAF5FF"/>
+      <stop offset="100%" stop-color="#F3E8FF"/>
+    </linearGradient>
+
+    <linearGradient id="footerBeige" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#EFEAE1"/>
+      <stop offset="100%" stop-color="#E9E3D8"/>
+    </linearGradient>
+
+    <!-- Warm Soft Shadows for Premium Light Theme -->
+    <filter id="softShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#78716C" flood-opacity="0.08"/>
+    </filter>
+
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#44403C" flood-opacity="0.05"/>
+    </filter>
+  </defs>
+
+  <!-- Canvas Background -->
+  <rect width="1600" height="900" fill="url(#bgBeige)"/>
+
+  <!-- Subtle Beige Grid Lines -->
+  <g stroke="#E5DFD5" stroke-width="0.8" opacity="0.6">
+    <line x1="0" y1="120" x2="1600" y2="120"/>
+    <line x1="0" y1="740" x2="1600" y2="740"/>
+    <line x1="390" y1="120" x2="390" y2="740"/>
+    <line x1="770" y1="120" x2="770" y2="740"/>
+    <line x1="1170" y1="120" x2="1170" y2="740"/>
+  </g>
+
+  <!-- Slide Header -->
+  <g id="Header">
+    <rect x="50" y="32" width="160" height="26" rx="6" fill="#F3ECE1" stroke="#D7CABE" stroke-width="1"/>
+    <text x="130" y="49" font-size="11" font-weight="700" fill="#92400E" text-anchor="middle" letter-spacing="1">SIH 2026 • PS 26190</text>
+
+    <text x="50" y="88" font-size="28" font-weight="800" fill="#1C1917" letter-spacing="0.5">NYAYAVAULT — SYSTEM ARCHITECTURE &amp; TECH STACK</text>
+    <text x="50" y="112" font-size="14" font-weight="500" fill="#78716C">Case-Centric, Tamper-Evident Document Management System for Law Enforcement &amp; Legal Agencies</text>
+
+    <!-- Status Badge on Top Right -->
+    <rect x="1350" y="40" width="200" height="36" rx="8" fill="#FFFFFF" stroke="#D7CABE" stroke-width="1" filter="url(#cardShadow)"/>
+    <circle cx="1370" cy="58" r="5" fill="#059669"/>
+    <text x="1385" y="62" font-size="12" font-weight="700" fill="#1C1917">BSA 2023 SEC 63 READY</text>
+  </g>
+
+  <!-- ==================== COLUMN 1: ACCESS LAYER ==================== -->
+  <g id="Col1_Access" transform="translate(50, 140)">
+    <!-- Column Outer Card -->
+    <rect width="320" height="570" rx="16" fill="url(#cardWhite)" stroke="#D8D0C5" stroke-width="1.5" filter="url(#softShadow)"/>
+    
+    <!-- Column Header -->
+    <rect width="320" height="48" rx="16" fill="#F5F0E8"/>
+    <rect y="36" width="320" height="12" fill="#F5F0E8"/>
+    <line x1="0" y1="48" x2="320" y2="48" stroke="#E2D9CC" stroke-width="1"/>
+    <text x="24" y="32" font-size="15" font-weight="800" fill="#0284C7">1. ACCESS LAYER</text>
+
+    <!-- Node 1: Web Browser -->
+    <g transform="translate(20, 75)">
+      <rect width="280" height="180" rx="12" fill="#FFFFFF" stroke="#E2D9CC" stroke-width="1" filter="url(#cardShadow)"/>
+      <rect x="16" y="14" width="40" height="40" rx="8" fill="#E0F2FE"/>
+      <text x="36" y="40" font-size="20" text-anchor="middle">🖥️</text>
+      <text x="68" y="32" font-size="16" font-weight="700" fill="#1C1917">Web Browser</text>
+      <text x="68" y="48" font-size="12" font-weight="600" fill="#0284C7">Multi-Role Portal</text>
+      
+      <line x1="16" y1="68" x2="264" y2="68" stroke="#F1ECE4" stroke-width="1"/>
+      
+      <text x="20" y="94" font-size="12" fill="#44403C">• Investigating Officer (IO)</text>
+      <text x="20" y="116" font-size="12" fill="#44403C">• Station House Officer (SHO)</text>
+      <text x="20" y="138" font-size="12" fill="#44403C">• CFSL Forensic Analyst</text>
+      <text x="20" y="160" font-size="12" fill="#44403C">• Public Prosecutor &amp; Judge</text>
+    </g>
+
+    <!-- Flow Arrow down -->
+    <g transform="translate(160, 275)" stroke="#0284C7" stroke-width="2" fill="none">
+      <line x1="0" y1="0" x2="0" y2="30"/>
+      <polygon points="-5,28 0,38 5,28" fill="#0284C7"/>
+    </g>
+
+    <!-- Node 2: MFA Login -->
+    <g transform="translate(20, 335)">
+      <rect width="280" height="180" rx="12" fill="#FFFFFF" stroke="#E2D9CC" stroke-width="1" filter="url(#cardShadow)"/>
+      <rect x="16" y="14" width="40" height="40" rx="8" fill="#E0F2FE"/>
+      <text x="36" y="40" font-size="20" text-anchor="middle">🔐</text>
+      <text x="68" y="32" font-size="16" font-weight="700" fill="#1C1917">Zero-Trust MFA</text>
+      <text x="68" y="48" font-size="12" font-weight="600" fill="#0284C7">Identity Gateway</text>
+
+      <line x1="16" y1="68" x2="264" y2="68" stroke="#F1ECE4" stroke-width="1"/>
+
+      <text x="20" y="94" font-size="12" fill="#44403C">• TOTP Authenticator (PyOTP)</text>
+      <text x="20" y="116" font-size="12" fill="#44403C">• WebAuthn Hardware Keys</text>
+      <text x="20" y="138" font-size="12" fill="#44403C">• HttpOnly Strict JWT Cookie</text>
+      <text x="20" y="160" font-size="12" fill="#44403C">• Device &amp; IP Geofence Binding</text>
+    </g>
+  </g>
+
+  <!-- Connective Arrow Col 1 -> Col 2 -->
+  <g transform="translate(375, 420)" stroke="#0284C7" stroke-width="2.5" fill="none">
+    <line x1="0" y1="0" x2="45" y2="0"/>
+    <polygon points="40,-6 54,0 40,6" fill="#0284C7"/>
+    <text x="27" y="-12" font-size="10" font-weight="700" fill="#0284C7" text-anchor="middle" stroke="none">HTTPS</text>
+  </g>
+
+  <!-- ==================== COLUMN 2: FRONTEND ==================== -->
+  <g id="Col2_Frontend" transform="translate(435, 140)">
+    <!-- Column Outer Card -->
+    <rect width="320" height="570" rx="16" fill="url(#cardWhite)" stroke="#D8D0C5" stroke-width="1.5" filter="url(#softShadow)"/>
+    
+    <!-- Column Header -->
+    <rect width="320" height="48" rx="16" fill="#F5F0E8"/>
+    <rect y="36" width="320" height="12" fill="#F5F0E8"/>
+    <line x1="0" y1="48" x2="320" y2="48" stroke="#E2D9CC" stroke-width="1"/>
+    <text x="24" y="32" font-size="15" font-weight="800" fill="#B45309">2. FRONTEND (REACT 18)</text>
+
+    <!-- Node 1: React Workspaces -->
+    <g transform="translate(20, 68)">
+      <rect width="280" height="125" rx="12" fill="#FFFFFF" stroke="#E2D9CC" stroke-width="1" filter="url(#cardShadow)"/>
+      <rect x="14" y="12" width="36" height="36" rx="8" fill="#FEF3C7"/>
+      <text x="32" y="36" font-size="18" text-anchor="middle">⚛️</text>
+      <text x="60" y="28" font-size="15" font-weight="700" fill="#1C1917">React Role Workspaces</text>
+      <text x="60" y="44" font-size="11" font-weight="600" fill="#B45309">Next.js 14 • Tailwind CSS</text>
+      <text x="16" y="78" font-size="11" fill="#57534E">Institutional Case Dossiers, FIR viewer,</text>
+      <text x="16" y="96" font-size="11" fill="#57534E">and role-scoped judicial action queues.</text>
+    </g>
+
+    <!-- Node 2: D3.js Timelines -->
+    <g transform="translate(20, 215)">
+      <rect width="280" height="145" rx="12" fill="#FFFFFF" stroke="#E2D9CC" stroke-width="1" filter="url(#cardShadow)"/>
+      <rect x="14" y="12" width="36" height="36" rx="8" fill="#FEF3C7"/>
+      <text x="32" y="36" font-size="18" text-anchor="middle">📊</text>
+      <text x="60" y="28" font-size="15" font-weight="700" fill="#1C1917">D3.js Timelines &amp; Anomalies</text>
+      <text x="60" y="44" font-size="11" font-weight="600" fill="#B45309">Procedural Sequence Verification</text>
+      <text x="16" y="76" font-size="11" fill="#57534E">• Visual Case Event Chronology</text>
+      <text x="16" y="94" font-size="11" fill="#57534E">• Flag: Seizure logged before FIR</text>
+      <text x="16" y="112" font-size="11" fill="#57534E">• Real-time Case Health Gauge (0-100)</text>
+    </g>
+
+    <!-- Node 3: Three.js 3D Twin -->
+    <g transform="translate(20, 382)">
+      <rect width="280" height="155" rx="12" fill="#FFFFFF" stroke="#E2D9CC" stroke-width="1" filter="url(#cardShadow)"/>
+      <rect x="14" y="12" width="36" height="36" rx="8" fill="#F3E8FF"/>
+      <text x="32" y="36" font-size="18" text-anchor="middle">🧊</text>
+      <text x="60" y="28" font-size="15" font-weight="700" fill="#1C1917">Three.js Malkhana 3D Twin</text>
+      <text x="60" y="44" font-size="11" font-weight="600" fill="#7C3AED">WebGL Evidence Spatial Model</text>
+      <text x="16" y="76" font-size="11" fill="#57534E">• 3D Scanned Physical Evidence</text>
+      <text x="16" y="94" font-size="11" fill="#57534E">• Seized weapon/device container</text>
+      <text x="16" y="112" font-size="11" fill="#57534E">• Camera-based QR custody scan</text>
+    </g>
+  </g>
+
+  <!-- Connective Arrow Col 2 -> Col 3 -->
+  <g transform="translate(760, 420)" stroke="#059669" stroke-width="2.5" fill="none">
+    <line x1="0" y1="0" x2="45" y2="0"/>
+    <polygon points="40,-6 54,0 40,6" fill="#059669"/>
+    <text x="27" y="-12" font-size="10" font-weight="700" fill="#059669" text-anchor="middle" stroke="none">REST</text>
+  </g>
+
+  <!-- ==================== COLUMN 3: BACKEND CORE ==================== -->
+  <g id="Col3_Backend" transform="translate(820, 140)">
+    <!-- Column Outer Card -->
+    <rect width="360" height="570" rx="16" fill="url(#cardWhite)" stroke="#A7F3D0" stroke-width="1.5" filter="url(#softShadow)"/>
+    
+    <!-- Column Header -->
+    <rect width="360" height="48" rx="16" fill="#E6F4EA"/>
+    <rect y="36" width="360" height="12" fill="#E6F4EA"/>
+    <line x1="0" y1="48" x2="360" y2="48" stroke="#A7F3D0" stroke-width="1"/>
+    <text x="24" y="32" font-size="15" font-weight="800" fill="#047857">3. BACKEND CORE (NODE.JS)</text>
+
+    <!-- Node 1: API Gateway -->
+    <g transform="translate(20, 68)">
+      <rect width="320" height="85" rx="12" fill="url(#gatewayBeige)" stroke="#6EE7B7" stroke-width="1"/>
+      <text x="20" y="32" font-size="20">🟢</text>
+      <text x="52" y="30" font-size="16" font-weight="700" fill="#064E3B">Node.js API Gateway</text>
+      <text x="52" y="48" font-size="11" font-weight="600" fill="#059669">Express / NestJS • Rate Limiter • RBAC/ABAC</text>
+      <text x="20" y="70" font-size="11" fill="#065F46">Validates JWT session, audits requests, routes traffic</text>
+    </g>
+
+    <!-- Node 2: UPI Engine -->
+    <g transform="translate(20, 172)">
+      <rect width="320" height="100" rx="12" fill="#FFFFFF" stroke="#E2D9CC" stroke-width="1" filter="url(#cardShadow)"/>
+      <text x="18" y="32" font-size="18">👤</text>
+      <text x="46" y="28" font-size="14" font-weight="700" fill="#1C1917">Entity Resolution &amp; UPI Engine</text>
+      <text x="46" y="44" font-size="11" font-weight="600" fill="#4F46E5">Double Metaphone • Phonetic Matching</text>
+      <text x="18" y="68" font-size="11" fill="#57534E">• Detects Indian name transliterations</text>
+      <text x="18" y="86" font-size="11" fill="#57534E">• Governed Merge/Split with audit trail</text>
+    </g>
+
+    <!-- Node 3: Timeline Engine -->
+    <g transform="translate(20, 290)">
+      <rect width="320" height="100" rx="12" fill="#FFFFFF" stroke="#E2D9CC" stroke-width="1" filter="url(#cardShadow)"/>
+      <text x="18" y="32" font-size="18">⚖️</text>
+      <text x="46" y="28" font-size="14" font-weight="700" fill="#1C1917">Procedural Timeline Engine</text>
+      <text x="46" y="44" font-size="11" font-weight="600" fill="#4F46E5">Finite State Machine (FSM) Validation</text>
+      <text x="18" y="68" font-size="11" fill="#57534E">• Blocks out-of-order procedural filings</text>
+      <text x="18" y="86" font-size="11" fill="#57534E">• Requires IO assignment for charge-sheet</text>
+    </g>
+
+    <!-- Node 4: BSA 2023 Vault -->
+    <g transform="translate(20, 408)">
+      <rect width="320" height="130" rx="12" fill="#FFFFFF" stroke="#E2D9CC" stroke-width="1" filter="url(#cardShadow)"/>
+      <text x="18" y="32" font-size="18">📜</text>
+      <text x="46" y="28" font-size="14" font-weight="700" fill="#1C1917">BSA 2023 Sec 63 &amp; Integrity Vault</text>
+      <text x="46" y="44" font-size="11" font-weight="600" fill="#7C3AED">Cryptographic Merkle Proofs &amp; Certs</text>
+      <text x="18" y="68" font-size="11" fill="#57534E">• SHA-256 Hash Chaining on each version</text>
+      <text x="18" y="86" font-size="11" fill="#57534E">• Merkle DAG Anchoring (Fabric / Local)</text>
+      <text x="18" y="104" font-size="11" fill="#57534E">• Automated Sec 63 Certificate Generator</text>
+    </g>
+  </g>
+
+  <!-- Connective Arrow Col 3 -> Col 4 -->
+  <g transform="translate(1185, 420)" stroke="#7C3AED" stroke-width="2.5" fill="none">
+    <line x1="0" y1="0" x2="45" y2="0"/>
+    <polygon points="40,-6 54,0 40,6" fill="#7C3AED"/>
+    <text x="27" y="-12" font-size="10" font-weight="700" fill="#7C3AED" text-anchor="middle" stroke="none">PERSIST</text>
+  </g>
+
+  <!-- ==================== COLUMN 4: DATA & AI ==================== -->
+  <g id="Col4_Data_AI" transform="translate(1245, 140)">
+    <!-- Column Outer Card -->
+    <rect width="305" height="570" rx="16" fill="url(#cardWhite)" stroke="#D8D0C5" stroke-width="1.5" filter="url(#softShadow)"/>
+    
+    <!-- Column Header -->
+    <rect width="305" height="48" rx="16" fill="#F5F0E8"/>
+    <rect y="36" width="305" height="12" fill="#F5F0E8"/>
+    <line x1="0" y1="48" x2="305" y2="48" stroke="#E2D9CC" stroke-width="1"/>
+    <text x="20" y="32" font-size="15" font-weight="800" fill="#7C3AED">4. DATA &amp; AI SERVICES</text>
+
+    <!-- Node 1: AI/ML Engine -->
+    <g transform="translate(18, 68)">
+      <rect width="269" height="135" rx="12" fill="#FFFFFF" stroke="#E2D9CC" stroke-width="1" filter="url(#cardShadow)"/>
+      <rect x="14" y="12" width="36" height="36" rx="8" fill="#F3E8FF"/>
+      <text x="32" y="36" font-size="18" text-anchor="middle">🧠</text>
+      <text x="58" y="28" font-size="15" font-weight="700" fill="#1C1917">AI / ML Engine</text>
+      <text x="58" y="44" font-size="11" font-weight="600" fill="#7C3AED">OCR &amp; Dynamic Redactor</text>
+      <text x="14" y="76" font-size="11" fill="#57534E">• Tesseract &amp; EasyOCR pipeline</text>
+      <text x="14" y="94" font-size="11" fill="#57534E">• PII NER: Phone, Aadhaar, Plates</text>
+      <text x="14" y="112" font-size="11" fill="#57534E">• Dynamic victim/juvenile masking</text>
+    </g>
+
+    <!-- Node 2: MinIO Object Store -->
+    <g transform="translate(18, 225)">
+      <rect width="269" height="135" rx="12" fill="#FFFFFF" stroke="#E2D9CC" stroke-width="1" filter="url(#cardShadow)"/>
+      <rect x="14" y="12" width="36" height="36" rx="8" fill="#E0F2FE"/>
+      <text x="32" y="36" font-size="18" text-anchor="middle">☁️</text>
+      <text x="58" y="28" font-size="15" font-weight="700" fill="#1C1917">Cloud Object Store</text>
+      <text x="58" y="44" font-size="11" font-weight="600" fill="#0284C7">MinIO S3 • Private Buckets</text>
+      <text x="14" y="76" font-size="11" fill="#57534E">• AES-256-GCM Envelope Encrypted</text>
+      <text x="14" y="94" font-size="11" fill="#57534E">• Original files remain immutable</text>
+      <text x="14" y="112" font-size="11" fill="#57534E">• Pre-signed time-bound download URLs</text>
+    </g>
+
+    <!-- Node 3: MongoDB -->
+    <g transform="translate(18, 382)">
+      <rect width="269" height="155" rx="12" fill="#FFFFFF" stroke="#E2D9CC" stroke-width="1" filter="url(#cardShadow)"/>
+      <rect x="14" y="12" width="36" height="36" rx="8" fill="#DCFCE7"/>
+      <text x="32" y="36" font-size="18" text-anchor="middle">🍃</text>
+      <text x="58" y="28" font-size="15" font-weight="700" fill="#1C1917">MongoDB Database</text>
+      <text x="58" y="44" font-size="11" font-weight="600" fill="#059669">Flexible Case &amp; Audit Store</text>
+      <text x="14" y="76" font-size="11" fill="#57534E">• Case files, FIRs, Seizure memos</text>
+      <text x="14" y="94" font-size="11" fill="#57534E">• Malkhana Physical Digital Twin</text>
+      <text x="14" y="112" font-size="11" fill="#57534E">• Append-Only Tamper-Evident Audit</text>
+      <text x="14" y="130" font-size="11" fill="#57534E">• Trigram &amp; text indices for search</text>
+    </g>
+  </g>
+
+  <!-- ==================== BOTTOM FOOTER: INTEGRATION & SECURITY ==================== -->
+  <g id="Footer_Banner" transform="translate(50, 735)">
+    <rect width="1500" height="125" rx="14" fill="url(#footerBeige)" stroke="#D8D0C5" stroke-width="1" filter="url(#softShadow)"/>
+    
+    <!-- Integration Box (Left) -->
+    <g transform="translate(25, 18)">
+      <rect x="0" y="0" width="700" height="88" rx="10" fill="#FFFFFF" stroke="#D8D0C5" stroke-width="1" filter="url(#cardShadow)"/>
+      <text x="18" y="26" font-size="13" font-weight="800" fill="#0284C7">🌐 INTEROPERABILITY &amp; INTEGRATION</text>
+      <text x="18" y="48" font-size="12" fill="#44403C">• CCTNS &amp; ICJS Interoperability Gateway (Police, Prisons, Courts, Forensics)</text>
+      <text x="18" y="68" font-size="12" fill="#44403C">• eSakshya Evidence Capture • NAFIS Fingerprint Ref • Malkhana QR / RFID</text>
+    </g>
+
+    <!-- Security Box (Right) -->
+    <g transform="translate(775, 18)">
+      <rect x="0" y="0" width="700" height="88" rx="10" fill="#FFFFFF" stroke="#D8D0C5" stroke-width="1" filter="url(#cardShadow)"/>
+      <text x="18" y="26" font-size="13" font-weight="800" fill="#B91C1C">🛡️ DEFENSE-IN-DEPTH SECURITY</text>
+      <text x="18" y="48" font-size="12" fill="#44403C">• AES-256-GCM Encryption at Rest • TLS 1.3 in Transit • Zero-Trust MFA</text>
+      <text x="18" y="68" font-size="12" fill="#44403C">• RSA-PSS / Ed25519 DSC Signatures • DPDP Act 2023 Dynamic PII Redaction</text>
+    </g>
+  </g>
+</svg>
