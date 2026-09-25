@@ -1,0 +1,18 @@
+{
+  "name": "nyayavault-monorepo",
+  "version": "2.0.0",
+  "description": "NyayaVault — Secure Digital Document Management System (SIH 26190)",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix apps/web run dev",
+    "dev:web": "npm --prefix apps/web run dev",
+    "dev:api": "cd apps/api && python main.py",
+    "build": "npm --prefix apps/web run build",
+    "start": "npm --prefix apps/web start",
+    "setup:web": "npm --prefix apps/web install",
+    "setup:api": "pip install -r apps/api/requirements.txt",
+    "seed": "cd apps/api && python -m app.db.seed",
+    "test:api": "cd apps/api && pytest -v",
+    "test": "cd apps/api && pytest -v"
+  }
+}
