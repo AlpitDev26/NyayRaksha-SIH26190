@@ -1,0 +1,53 @@
+{
+  "name": "nyayavault-network",
+  "version": "1.0.0",
+  "client": {
+    "organization": "Org1MSP",
+    "connection": {
+      "timeout": {
+        "peer": {
+          "endorser": "300"
+        },
+        "orderer": "300"
+      }
+    }
+  },
+  "organizations": {
+    "Org1MSP": {
+      "mspid": "Org1MSP",
+      "peers": [
+        "peer0.org1.nyayavault.gov"
+      ],
+      "certificateAuthorities": [
+        "ca.org1.nyayavault.gov"
+      ]
+    }
+  },
+  "peers": {
+    "peer0.org1.nyayavault.gov": {
+      "url": "grpcs://localhost:7051",
+      "tlsCACerts": {
+        "path": "./infra/fabric/crypto-config/peerOrganizations/org1.nyayavault.gov/peers/peer0.org1.nyayavault.gov/tls/ca.crt"
+      },
+      "grpcOptions": {
+        "ssl-target-name-override": "peer0.org1.nyayavault.gov",
+        "hostnameOverride": "peer0.org1.nyayavault.gov"
+      }
+    }
+  },
+  "channels": {
+    "nyayavaultchannel": {
+      "orderers": [
+        "orderer.nyayavault.gov"
+      ],
+      "peers": {
+        "peer0.org1.nyayavault.gov": {
+          "endorsingPeer": true,
+          "chaincodeQuery": true,
+          "ledgerQuery": true,
+          "eventSource": true
+        }
+      }
+    }
+  }
+}
