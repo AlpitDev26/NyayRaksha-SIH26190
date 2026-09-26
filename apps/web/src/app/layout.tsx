@@ -6,7 +6,7 @@ import { Navbar } from "@/components/ui/navbar";
 import { Sidebar } from "@/components/ui/sidebar";
 
 export const metadata: Metadata = {
-  title: "NyayaVault — Secure Digital Document Management System",
+  title: "NyayRaksha — Secure Digital Document Management System",
   description:
     "Tamper-evident legal and investigation document management with verifiable chain of custody (SIH 26190).",
 };

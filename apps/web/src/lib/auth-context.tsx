@@ -5,14 +5,14 @@ import { User } from "@/types";
 import { apiRequest } from "@/lib/api";
 
 export const DEMO_ACCOUNTS = [
-  { role: "POLICE_OFFICER", label: "Evidence Officer", email: "officer@nyayavault.demo", name: "Insp. Rajesh Sharma" },
-  { role: "INVESTIGATING_OFFICER", label: "Investigating Officer", email: "investigator@nyayavault.demo", name: "ACP Priya Nair" },
-  { role: "JUDGE", label: "Judge", email: "judge@nyayavault.demo", name: "Justice S. K. Roy" },
-  { role: "PROSECUTOR", label: "Prosecutor", email: "prosecutor@nyayavault.demo", name: "Adv. Meera Joshi" },
-  { role: "FORENSIC_ANALYST", label: "Forensic Analyst", email: "forensic@nyayavault.demo", name: "Dr. Anand Swaminathan" },
-  { role: "COURT_CLERK", label: "Court Clerk", email: "clerk@nyayavault.demo", name: "R. K. Gupta" },
-  { role: "AUDITOR", label: "Compliance Auditor", email: "auditor@nyayavault.demo", name: "Sunita Deshmukh" },
-  { role: "ADMIN", label: "System Administrator", email: "admin@nyayavault.demo", name: "Alok Verma" },
+  { role: "POLICE_OFFICER", label: "Evidence Officer", email: "officer@nyayraksha.demo", name: "Insp. Rajesh Sharma" },
+  { role: "INVESTIGATING_OFFICER", label: "Investigating Officer", email: "investigator@nyayraksha.demo", name: "ACP Priya Nair" },
+  { role: "JUDGE", label: "Judge", email: "judge@nyayraksha.demo", name: "Justice S. K. Roy" },
+  { role: "PROSECUTOR", label: "Prosecutor", email: "prosecutor@nyayraksha.demo", name: "Adv. Meera Joshi" },
+  { role: "FORENSIC_ANALYST", label: "Forensic Analyst", email: "forensic@nyayraksha.demo", name: "Dr. Anand Swaminathan" },
+  { role: "COURT_CLERK", label: "Court Clerk", email: "clerk@nyayraksha.demo", name: "R. K. Gupta" },
+  { role: "AUDITOR", label: "Compliance Auditor", email: "auditor@nyayraksha.demo", name: "Sunita Deshmukh" },
+  { role: "ADMIN", label: "System Administrator", email: "admin@nyayraksha.demo", name: "Alok Verma" },
 ];
 
 interface AuthContextType {

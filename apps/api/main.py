@@ -7,7 +7,7 @@ import uvicorn
 
 from app.api.v1 import api_router
 from app.core.config import settings
-from app.core.exceptions import NyayaVaultException
+from app.core.exceptions import NyayRakshaException
 from app.core.logging import logger
 from app.db.seed import seed_database
 from app.db.session import init_db
@@ -16,15 +16,15 @@ from app.db.session import init_db
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Lifecycle startup hook
-    logger.info("Initializing NyayaVault database tables and seed state...")
+    logger.info("Initializing NyayRaksha database tables and seed state...")
     try:
         await init_db()
         await seed_database()
-        logger.info("NyayaVault backend engine ready.")
+        logger.info("NyayRaksha backend engine ready.")
     except Exception as e:
         logger.error(f"Initialization warning: {e}")
     yield
-    logger.info("NyayaVault backend shutting down.")
+    logger.info("NyayRaksha backend shutting down.")
 
 
 app = FastAPI(
@@ -49,8 +49,8 @@ app.add_middleware(
 
 
 # Standardized Domain Exception Handler
-@app.exception_handler(NyayaVaultException)
-async def nyayavault_exception_handler(request: Request, exc: NyayaVaultException):
+@app.exception_handler(NyayRakshaException)
+async def nyayraksha_exception_handler(request: Request, exc: NyayRakshaException):
     return JSONResponse(
         status_code=exc.status_code,
         content=exc.detail,

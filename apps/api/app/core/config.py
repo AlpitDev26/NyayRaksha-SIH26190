@@ -12,20 +12,20 @@ class Settings(BaseSettings):
     )
 
     APP_ENV: str = "development"
-    APP_NAME: str = "NyayaVault — Secure Digital Document Management System"
+    APP_NAME: str = "NyayRaksha — Secure Digital Document Management System"
     FRONTEND_URL: str = "http://localhost:3000"
     BACKEND_URL: str = "http://localhost:8000"
 
     # Database
     # Default to SQLite for zero-dependency local execution
-    DATABASE_URL: str = "sqlite+aiosqlite:///./nyayavault.db"
+    DATABASE_URL: str = "sqlite+aiosqlite:///./nyayraksha.db"
     DATABASE_ECHO: bool = False
 
     # Redis (Optional in local dev)
     REDIS_URL: str = "redis://localhost:6379/0"
 
     # Security & JWT
-    JWT_SECRET: str = "nyayavault_super_secret_jwt_key_sih_2026_production_min_32_chars"
+    JWT_SECRET: str = "nyayraksha_super_secret_jwt_key_sih_2026_production_min_32_chars"
     JWT_ALGORITHM: str = "HS256"
     JWT_ACCESS_TTL_MINUTES: int = 15
     JWT_REFRESH_TTL_DAYS: int = 7
@@ -51,10 +51,10 @@ class Settings(BaseSettings):
     STORAGE_MODE: str = "local"  # "local" or "s3"
     STORAGE_LOCAL_DIR: str = "./storage_vault"
     STORAGE_ENCRYPTION_ENABLED: bool = True
-    STORAGE_AES_KEY: str = "NyayaVaultStorageMasterKey2026!32"  # 32 bytes for AES-256
+    STORAGE_AES_KEY: str = "NyayRakshaStorageMasterKey2026!32"  # 32 bytes for AES-256
 
     S3_ENDPOINT_URL: str = "http://localhost:9000"
-    S3_BUCKET: str = "nyayavault-private"
+    S3_BUCKET: str = "nyayraksha-private"
     S3_ACCESS_KEY: str = "minioadmin"
     S3_SECRET_KEY: str = "minioadmin"
     S3_REGION: str = "ap-south-1"
@@ -68,8 +68,8 @@ class Settings(BaseSettings):
     # Permissioned Blockchain
     BLOCKCHAIN_MODE: str = "mock"  # "mock" or "fabric"
     FABRIC_GATEWAY_URL: str = "localhost:7051"
-    FABRIC_CHANNEL: str = "nyayavaultchannel"
-    FABRIC_CHAINCODE: str = "nyayavaultcc"
+    FABRIC_CHANNEL: str = "nyayrakshachannel"
+    FABRIC_CHAINCODE: str = "nyayrakshacc"
     FABRIC_MSP_ID: str = "Org1MSP"
 
     # AI & OCR
@@ -83,7 +83,7 @@ class Settings(BaseSettings):
     SMTP_PORT: int = 587
     SMTP_USERNAME: str = ""
     SMTP_PASSWORD: str = ""
-    SMTP_FROM: str = "no-reply@nyayavault.local"
+    SMTP_FROM: str = "no-reply@nyayraksha.local"
 
 
 settings = Settings()

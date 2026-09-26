@@ -18,7 +18,9 @@ import {
   Lock,
 } from "lucide-react";
 
-export default function DocumentUploadPage() {
+export default function DocumentUploadPageWrapped() { return <React.Suspense fallback={<div>Loading...</div>}><DocumentUploadPage /></React.Suspense>; }
+
+function DocumentUploadPage() {
   const searchParams = useSearchParams();
   const preselectedCase = searchParams.get("caseId") || "";
 
@@ -101,7 +103,7 @@ export default function DocumentUploadPage() {
   const copyReceiptData = () => {
     if (receipt) {
       navigator.clipboard.writeText(
-        `NyayaVault Ingestion Receipt:\nID: ${receipt.document_id}\nSHA-256: ${receipt.sha256_hash}\nTxID: ${receipt.blockchain_tx_id}\nTimestamp: ${receipt.timestamp_utc}`
+        `NyayRaksha Ingestion Receipt:\nID: ${receipt.document_id}\nSHA-256: ${receipt.sha256_hash}\nTxID: ${receipt.blockchain_tx_id}\nTimestamp: ${receipt.timestamp_utc}`
       );
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);

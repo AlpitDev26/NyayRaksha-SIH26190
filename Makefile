@@ -1,7 +1,7 @@
 .PHONY: help setup dev dev-api dev-web seed test test-api docker-up docker-down lint format
 
 help:
-	@echo "NyayaVault — Secure Digital Document Management System"
+	@echo "NyayRaksha — Secure Digital Document Management System"
 	@echo "Commands:"
 	@echo "  make setup        - Install backend & frontend dependencies"
 	@echo "  make dev          - Run both backend and frontend concurrently"

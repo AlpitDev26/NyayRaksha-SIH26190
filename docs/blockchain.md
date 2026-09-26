@@ -1,4 +1,4 @@
-# NyayaVault — Permissioned Blockchain Architecture
+# NyayRaksha — Permissioned Blockchain Architecture
 
 **Network:** Hyperledger Fabric 2.5 (or Mock Fabric Ledger in local demo mode)  
 **Channel:** `nyayavaultchannel`  
@@ -9,7 +9,7 @@
 
 ## 1. Principles of Permissioned Ledger Usage
 
-Public blockchains (such as Ethereum or Bitcoin) require gas fees, expose transaction metadata publicly, and have variable latency. NyayaVault utilizes a **Permissioned Distributed Ledger** (Hyperledger Fabric) where all participating peer organizations have cryptographically authenticated identities (Membership Service Providers - MSPs):
+Public blockchains (such as Ethereum or Bitcoin) require gas fees, expose transaction metadata publicly, and have variable latency. NyayRaksha utilizes a **Permissioned Distributed Ledger** (Hyperledger Fabric) where all participating peer organizations have cryptographically authenticated identities (Membership Service Providers - MSPs):
 
 - **Org1 (Law Enforcement / Police MSP)**: Endorses FIR uploads, seizure memos, initial evidence custody.
 - **Org2 (Judiciary / Court MSP)**: Endorses court filings, judicial orders, judgments, bail orders.
@@ -80,7 +80,7 @@ Binds an officer's, prosecutor's, or judge's digital signature to a specific doc
 
 ## 3. Mock Fabric Ledger Implementation
 
-For immediate local demonstration without starting a 10-container Fabric test network, NyayaVault implements `MockBlockchainAdapter`:
+For immediate local demonstration without starting a 10-container Fabric test network, NyayRaksha implements `MockBlockchainAdapter`:
 - **Deterministic State Store**: Simulates Fabric World State (Key-Value) and Block Store.
 - **Cryptographic Hashes**: Generates real SHA-256 block hashes, Merkle roots, and transaction IDs (e.g. `0x3a9f...`).
 - **Simulated Latency & Consensus**: Accurately simulates Fabric endorsement latency and transaction commitment events.

@@ -1,4 +1,4 @@
-# NyayaVault — Security Architecture & Compliance Guidelines
+# NyayRaksha — Security Architecture & Compliance Guidelines
 
 **Problem Statement ID:** 26190  
 **Title:** Secure Digital Document Management System for Legal and Investigation Documents  
@@ -7,7 +7,7 @@
 
 ## 1. Security Principles
 
-NyayaVault is designed with the principle of **Defense-in-Depth**, **Zero Trust Internal Architecture**, and **Verifiable Chain of Custody**.
+NyayRaksha is designed with the principle of **Defense-in-Depth**, **Zero Trust Internal Architecture**, and **Verifiable Chain of Custody**.
 
 1. **Least Privilege**: Users are granted only the minimum permissions required for their specific role and assigned cases.
 2. **Server-Side Enforcement**: All authorization checks (RBAC, Case ACL, Classification, Expiry) are strictly performed on the backend API. UI element hiding is purely for user ergonomics.

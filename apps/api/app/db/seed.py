@@ -69,14 +69,14 @@ async def seed_database(session_factory=None):
         print("Seeding 8 demo user accounts...")
         hashed_pwd = hash_password(DEMO_PASSWORD)
         users_data = [
-            ("u-admin", "admin@nyayavault.demo", "Alok Verma", "ADMIN", "org-audit", True),
-            ("u-officer", "officer@nyayavault.demo", "Insp. Rajesh Sharma", "POLICE_OFFICER", "org-police", False),
-            ("u-investigator", "investigator@nyayavault.demo", "ACP Priya Nair", "INVESTIGATING_OFFICER", "org-police", False),
-            ("u-forensic", "forensic@nyayavault.demo", "Dr. Anand Swaminathan", "FORENSIC_ANALYST", "org-cfsl", False),
-            ("u-prosecutor", "prosecutor@nyayavault.demo", "Adv. Meera Joshi", "PROSECUTOR", "org-pros", False),
-            ("u-clerk", "clerk@nyayavault.demo", "R. K. Gupta", "COURT_CLERK", "org-court", False),
-            ("u-judge", "judge@nyayavault.demo", "Justice S. K. Roy", "JUDGE", "org-court", True),
-            ("u-auditor", "auditor@nyayavault.demo", "Sunita Deshmukh", "AUDITOR", "org-audit", True),
+            ("u-admin", "admin@nyayraksha.demo", "Alok Verma", "ADMIN", "org-audit", True),
+            ("u-officer", "officer@nyayraksha.demo", "Insp. Rajesh Sharma", "POLICE_OFFICER", "org-police", False),
+            ("u-investigator", "investigator@nyayraksha.demo", "ACP Priya Nair", "INVESTIGATING_OFFICER", "org-police", False),
+            ("u-forensic", "forensic@nyayraksha.demo", "Dr. Anand Swaminathan", "FORENSIC_ANALYST", "org-cfsl", False),
+            ("u-prosecutor", "prosecutor@nyayraksha.demo", "Adv. Meera Joshi", "PROSECUTOR", "org-pros", False),
+            ("u-clerk", "clerk@nyayraksha.demo", "R. K. Gupta", "COURT_CLERK", "org-court", False),
+            ("u-judge", "judge@nyayraksha.demo", "Justice S. K. Roy", "JUDGE", "org-court", True),
+            ("u-auditor", "auditor@nyayraksha.demo", "Sunita Deshmukh", "AUDITOR", "org-audit", True),
         ]
         user_map = {}
         for uid, email, name, role_name, org_id, mfa in users_data:
@@ -201,7 +201,7 @@ async def seed_database(session_factory=None):
             uploader = next(u for u in users_data if u[0] == uploader_id)
 
             # Synthetic sample content for hashing
-            sample_content = f"NYAYAVAULT SECURE ARCHIVAL EVIDENCE\nDocument: {title}\nCase: {case_id}\nType: {doc_type}\nClassification: {cls}\nTimestamp: {now.isoformat()}\n".encode("utf-8")
+            sample_content = f"NYAYRAKSHA SECURE ARCHIVAL EVIDENCE\nDocument: {title}\nCase: {case_id}\nType: {doc_type}\nClassification: {cls}\nTimestamp: {now.isoformat()}\n".encode("utf-8")
             real_sha256 = compute_sha256(sample_content)
 
             # Put in storage
@@ -341,7 +341,7 @@ async def seed_database(session_factory=None):
                 action="SYSTEM_INITIALIZED",
                 resource_type="SYSTEM",
                 outcome="SUCCESS",
-                details={"version": "NyayaVault-2.0-SIH26190", "blockchain": "Hyperledger Fabric Gateway Mock"},
+                details={"version": "NyayRaksha-2.0-SIH26190", "blockchain": "Hyperledger Fabric Gateway Mock"},
                 timestamp_utc=now - timedelta(days=14),
             )
         )

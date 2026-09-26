@@ -1,4 +1,4 @@
-# NyayaVault — Comprehensive Threat Model
+# NyayRaksha — Comprehensive Threat Model
 
 **Framework:** STRIDE (Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege)  
 **Standard:** NIST SP 800-53 / ISO 27001  

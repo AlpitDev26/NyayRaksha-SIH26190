@@ -2,281 +2,324 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { useAuth } from "@/lib/auth-context";
 import { Case, Document, ComplianceStatus } from "@/types";
 import { apiRequest } from "@/lib/api";
-import { ClassificationBadge, IntegrityBadge } from "@/components/ui/badges";
+import { useAuth } from "@/lib/auth-context";
 import { IntegrityModal } from "@/components/integrity-modal";
 import {
-  FileText,
   Briefcase,
-  ShieldCheck,
+  FolderArchive,
   FileUp,
-  FolderPlus,
-  ArrowRight,
-  ShieldAlert,
-  Search,
-  ExternalLink,
-  Scale,
-  Building2,
-  FileCheck2,
+  ShieldCheck,
   AlertTriangle,
-  History,
-  QrCode,
+  Scale,
+  Cpu,
+  Layers,
+  CheckCircle2,
+  Lock,
+  ArrowRight,
+  RefreshCw,
+  FileText,
+  AlertOctagon,
 } from "lucide-react";
 
-export default function DashboardPage() {
+export default function JurisdictionalDashboard() {
   const { user } = useAuth();
   const [cases, setCases] = useState<Case[]>([]);
   const [documents, setDocuments] = useState<Document[]>([]);
   const [compliance, setCompliance] = useState<ComplianceStatus | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [verifyDoc, setVerifyDoc] = useState<{ id: string; title: string } | null>(null);
+
+  // Verification Modal State
+  const [verifyDoc, setVerifyDoc] = useState<Document | null>(null);
+
+  const loadDashboardData = async () => {
+    setLoading(true);
+    try {
+      const [casesData, docsData, compData] = await Promise.all([
+        apiRequest<Case[]>("/api/v1/cases"),
+        apiRequest<Document[]>("/api/v1/documents"),
+        apiRequest<ComplianceStatus>("/api/v1/compliance/checklist").catch(() => null),
+      ]);
+      setCases(casesData || []);
+      setDocuments(docsData || []);
+      setCompliance(compData);
+    } catch (err) {
+      console.error("Error loading jurisdictional dashboard data:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    async function loadDashboardData() {
-      try {
-        const [cData, dData, compData] = await Promise.all([
-          apiRequest<Case[]>("/api/v1/cases"),
-          apiRequest<Document[]>("/api/v1/documents"),
-          apiRequest<ComplianceStatus>("/api/v1/compliance/checklist").catch(() => null),
-        ]);
-        setCases(cData);
-        setDocuments(dData);
-        setCompliance(compData);
-      } catch (err) {
-        console.error("Dashboard data load error:", err);
-      } finally {
-        setLoading(false);
-      }
-    }
     loadDashboardData();
-  }, [user]);
+  }, []);
 
-  const tamperedDoc = documents.find((d) => d.is_simulated_tampered);
+  const totalExhibits = documents.length;
+  const tamperedCount = documents.filter((d) => d.status === "INCIDENT_LOCKED" || d.is_simulated_tampered).length;
+  const verifiedCount = documents.filter((d) => d.status === "ACTIVE" && !d.is_simulated_tampered).length;
 
   return (
     <div className="space-y-6 font-sans">
-      {/* 1. Official Jurisdictional Overview Banner */}
-      <div className="bg-[#0f213f] text-slate-100 rounded-xs p-5 shadow-sm border border-slate-700/80 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-5">
-        <div className="space-y-1.5">
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="text-[10px] font-mono px-2 py-0.5 rounded-xs bg-[#193564] text-amber-300 font-bold uppercase tracking-wider border border-amber-600/40">
-              {user?.roles[0]?.replace(/_/g, " ") || "POLICE INVESTIGATING OFFICER"}
+      {/* Official Government Emblem Banner */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-300 pb-4">
+        <div>
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-600 bg-slate-200 px-2 py-0.5 rounded-xs">
+              ICJS SECURE EVIDENCE GATEWAY
             </span>
-            <span className="text-[11px] text-slate-300 font-mono font-medium">
-              JURISDICTION: {user?.organization_name || "Central Crime Branch, New Delhi"} • P.S. CODE: DL-04
+            <span className="text-xs font-mono text-slate-500">
+              BHARATIYA SAKSHYA ADHINIYAM (BSA 2023) • SEC 63 COMPLIANT
             </span>
           </div>
-
-          <h1 className="text-xl md:text-2xl font-serif font-bold tracking-tight text-white flex items-center gap-2.5">
-            <Scale className="w-5 h-5 text-amber-400 shrink-0" />
-            Electronic Evidence & Case Docket Register
+          <h1 className="text-xl md:text-2xl font-serif font-bold text-slate-900 tracking-tight mt-1 flex items-center gap-2">
+            <Scale className="w-5 h-5 text-amber-700" />
+            NyayRaksha — Jurisdictional Evidence & Case Repository
           </h1>
-
-          <p className="text-xs text-slate-300 max-w-3xl leading-relaxed">
-            Statutory repository compliant with <strong>Bharatiya Nagarik Suraksha Sanhita (BNSS 2023)</strong> and{" "}
-            <strong>Section 63 of Bharatiya Sakshya Adhiniyam (BSA 2023)</strong>. All exhibits and case diaries are
-            cryptographically anchored with SHA-256 fingerprints to the national permissioned ledger.
+          <p className="text-xs text-slate-600 mt-0.5">
+            Tamper-evident legal and investigation document management with verifiable chain of custody
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2.5 shrink-0">
+        <div className="flex items-center gap-2 self-start sm:self-auto">
           <Link
             href="/documents/upload"
-            className="px-3.5 py-2 bg-[#1b437c] hover:bg-[#23569c] text-white rounded-xs text-xs font-bold uppercase tracking-wider shadow-xs transition-colors flex items-center gap-1.5 border border-blue-400/40"
+            className="px-3.5 py-2 bg-[#1b437c] hover:bg-[#23569c] text-white rounded-xs text-xs font-mono font-bold uppercase tracking-wider shadow-xs transition-colors flex items-center gap-1.5 border border-blue-400/40"
           >
-            <FileUp className="w-3.5 h-3.5" /> Ingest Exhibit Record
+            <FileUp className="w-3.5 h-3.5" /> Ingest New Exhibit
           </Link>
-          <Link
-            href="/cases"
-            className="px-3.5 py-2 bg-[#14233c] hover:bg-[#1a2e4e] text-slate-200 border border-slate-600 rounded-xs text-xs font-bold uppercase tracking-wider transition-colors flex items-center gap-1.5"
-          >
-            <FolderPlus className="w-3.5 h-3.5" /> Search Dockets
-          </Link>
-        </div>
-      </div>
-
-      {/* 2. Official Evidentiary Discrepancy & Statutory Re-Hashing Notice */}
-      {tamperedDoc && (
-        <div className="bg-[#fff9f9] border-2 border-red-600/90 rounded-xs p-4 shadow-xs flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-          <div className="flex items-start gap-3">
-            <div className="w-8 h-8 rounded-xs bg-red-100 border border-red-300 flex items-center justify-center shrink-0 mt-0.5 text-red-700">
-              <ShieldAlert className="w-5 h-5" />
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-red-900 bg-red-200/80 px-1.5 py-0.2 border border-red-300">
-                  STATUTORY AUDIT DISCREPANCY DETECTED
-                </span>
-                <span className="text-xs font-mono text-slate-500 font-semibold">
-                  REF: {tamperedDoc.case_id}
-                </span>
-              </div>
-              <h3 className="font-bold text-slate-900 text-sm mt-0.5">
-                Exhibit Compromise Alert: {tamperedDoc.title}
-              </h3>
-              <p className="text-xs text-slate-600 mt-0.5 max-w-3xl">
-                Cryptographic discrepancy identified between file bitstream in vault and Genesis Root Hash committed to the
-                permissioned ledger. Under BSA Section 63, judicial exports are suspended until forensic re-verification.
-              </p>
-            </div>
-          </div>
           <button
-            onClick={() => setVerifyDoc({ id: tamperedDoc.id, title: tamperedDoc.title })}
-            className="px-3.5 py-2 bg-red-700 hover:bg-red-800 text-white text-xs font-bold uppercase tracking-wider rounded-xs shadow-xs shrink-0 transition-colors flex items-center gap-1.5 border border-red-900"
+            onClick={loadDashboardData}
+            title="Refresh Ledger Telemetry"
+            className="p-2 bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 rounded-xs text-xs transition-colors"
           >
-            <ShieldCheck className="w-3.5 h-3.5" /> Execute Hash Audit
+            <RefreshCw className={`w-3.5 h-3.5 ${loading ? "animate-spin" : ""}`} />
           </button>
         </div>
-      )}
+      </div>
 
-      {/* 3. High-Density Administrative Metrics */}
+      {/* Hero Telemetry Matrix */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-white p-4 rounded-xs border border-slate-300/80 shadow-xs">
+        <div className="bg-white rounded-xs border border-slate-300 p-4 shadow-xs">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] font-bold text-slate-500 font-mono uppercase tracking-wider">
-              ACTIVE CASE DOCKETS
+            <span className="text-[11px] font-mono font-bold text-slate-500 uppercase tracking-wider">
+              Active Case Dockets
             </span>
-            <Briefcase className="w-4 h-4 text-slate-600" />
+            <Briefcase className="w-4 h-4 text-blue-700" />
           </div>
-          <p className="text-2xl font-serif font-bold text-slate-900 mt-1">{cases.length}</p>
-          <p className="text-[11px] text-slate-500 font-sans mt-0.5">Under Investigation / Trial</p>
+          <div className="text-2xl font-bold font-mono text-slate-900 mt-2">
+            {cases.length}
+          </div>
+          <div className="text-[11px] text-slate-500 mt-1 font-mono">
+            Under Investigation / In Trial
+          </div>
         </div>
 
-        <div className="bg-white p-4 rounded-xs border border-slate-300/80 shadow-xs">
+        <div className="bg-white rounded-xs border border-slate-300 p-4 shadow-xs">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] font-bold text-slate-500 font-mono uppercase tracking-wider">
-              SEALED EXHIBITS (SEC 63 BSA)
+            <span className="text-[11px] font-mono font-bold text-slate-500 uppercase tracking-wider">
+              Total Evidence Exhibits
             </span>
-            <FileText className="w-4 h-4 text-slate-600" />
+            <FolderArchive className="w-4 h-4 text-teal-700" />
           </div>
-          <p className="text-2xl font-serif font-bold text-slate-900 mt-1">{documents.length}</p>
-          <p className="text-[11px] text-slate-500 font-sans mt-0.5">FIRs, Memos & Forensic Reports</p>
+          <div className="text-2xl font-bold font-mono text-slate-900 mt-2">
+            {totalExhibits}
+          </div>
+          <div className="text-[11px] text-emerald-700 font-mono font-semibold">
+            {verifiedCount} Encrypted & Anchored
+          </div>
         </div>
 
-        <div className="bg-white p-4 rounded-xs border border-slate-300/80 shadow-xs">
+        <div className="bg-white rounded-xs border border-slate-300 p-4 shadow-xs">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] font-bold text-slate-500 font-mono uppercase tracking-wider">
-              LEDGER INTEGRITY INDEX
+            <span className="text-[11px] font-mono font-bold text-slate-500 uppercase tracking-wider">
+              Ledger Consensus State
             </span>
-            <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+            <Cpu className="w-4 h-4 text-amber-700" />
           </div>
-          <p className="text-2xl font-serif font-bold text-emerald-800 mt-1">100.0%</p>
-          <p className="text-[11px] text-slate-500 font-sans mt-0.5">Hyperledger Fabric State Synced</p>
+          <div className="text-2xl font-bold font-mono text-emerald-700 mt-2 flex items-center gap-1.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            ACTIVE
+          </div>
+          <div className="text-[11px] text-slate-500 mt-1 font-mono">
+            Hyperledger Fabric / Mock Synced
+          </div>
         </div>
 
-        <div className="bg-white p-4 rounded-xs border border-slate-300/80 shadow-xs">
+        <div className="bg-white rounded-xs border border-slate-300 p-4 shadow-xs">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] font-bold text-slate-500 font-mono uppercase tracking-wider">
-              CHAIN OF CUSTODY LOGS
+            <span className="text-[11px] font-mono font-bold text-slate-500 uppercase tracking-wider">
+              Integrity Incidents
             </span>
-            <History className="w-4 h-4 text-slate-600" />
+            <AlertOctagon className="w-4 h-4 text-red-600" />
           </div>
-          <p className="text-2xl font-serif font-bold text-slate-900 mt-1">
-            {compliance?.total_immutable_events || "80+"}
-          </p>
-          <p className="text-[11px] text-slate-500 font-sans mt-0.5">Cryptographically Sealed Actions</p>
+          <div className="text-2xl font-bold font-mono text-red-600 mt-2">
+            {tamperedCount}
+          </div>
+          <div className="text-[11px] text-red-700 font-mono font-semibold">
+            {tamperedCount > 0 ? "Compromised & Locked" : "Zero Breaches"}
+          </div>
         </div>
       </div>
 
-      {/* 4. Official Exhibit & Document Registry Table */}
-      <div className="bg-white rounded-xs border border-slate-300 shadow-xs overflow-hidden">
-        <div className="p-3.5 bg-slate-100/80 border-b border-slate-300 flex flex-wrap items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <FileCheck2 className="w-4 h-4 text-slate-700" />
-            <h2 className="font-bold text-xs uppercase tracking-wider text-slate-800 font-mono">
-              OFFICIAL INVESTIGATION EXHIBITS & DOCUMENT LOG
+      {/* Tamper Demonstration Showcase Card */}
+      <div className="p-4 bg-gradient-to-r from-[#0c182c] to-[#162744] text-white rounded-xs border border-slate-700 shadow-md">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div className="space-y-1">
+            <div className="flex items-center gap-2">
+              <span className="px-2 py-0.5 bg-amber-500/20 text-amber-300 border border-amber-500/40 text-[10px] font-mono font-bold uppercase rounded-xs">
+                JUDGE EVALUATION DEMO
+              </span>
+              <span className="text-xs font-mono text-slate-300">
+                Mathematical Tampering Proof
+              </span>
+            </div>
+            <h3 className="text-base font-bold tracking-tight text-white flex items-center gap-2 font-serif">
+              <ShieldCheck className="w-4 h-4 text-teal-400" />
+              Live 3-Way Cryptographic Reconciliation & Lockdown
+            </h3>
+            <p className="text-xs text-slate-300 max-w-2xl leading-relaxed">
+              Experience the core security engine: verify an authentic exhibit to see instant proof validation, or test the deliberately tampered exhibit (<code className="text-amber-300 bg-slate-900/60 px-1 py-0.2 rounded-xs">DOC-005</code>) to watch the system detect a byte mismatch, shift to <strong className="text-red-400">INCIDENT_LOCKED</strong>, and freeze downloads.
+            </p>
+          </div>
+
+          <div className="flex items-center gap-2 shrink-0">
+            {documents.find((d) => d.is_simulated_tampered) && (
+              <button
+                onClick={() => setVerifyDoc(documents.find((d) => d.is_simulated_tampered)!)}
+                className="px-3.5 py-2 bg-red-700 hover:bg-red-800 text-white rounded-xs text-xs font-mono font-bold uppercase tracking-wider shadow-xs transition-colors flex items-center gap-1.5 border border-red-500"
+              >
+                <AlertTriangle className="w-3.5 h-3.5" /> Test Tamper Detection
+              </button>
+            )}
+            {documents[0] && (
+              <button
+                onClick={() => setVerifyDoc(documents[0])}
+                className="px-3.5 py-2 bg-teal-700 hover:bg-teal-800 text-white rounded-xs text-xs font-mono font-bold uppercase tracking-wider shadow-xs transition-colors flex items-center gap-1.5 border border-teal-500"
+              >
+                <ShieldCheck className="w-3.5 h-3.5" /> Test Authentic Verification
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Dual Column: Active Cases and Recent Exhibits */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Left Column: Active Cases (1/3) */}
+        <div className="bg-white rounded-xs border border-slate-300 shadow-xs p-4 space-y-3">
+          <div className="flex items-center justify-between border-b border-slate-200 pb-2">
+            <h2 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-800 flex items-center gap-1.5">
+              <Briefcase className="w-3.5 h-3.5 text-blue-700" /> Case Dockets
             </h2>
+            <Link
+              href="/cases"
+              className="text-[11px] font-mono text-blue-700 hover:text-blue-900 font-semibold"
+            >
+              View All &rarr;
+            </Link>
           </div>
-          <Link
-            href="/documents"
-            className="text-xs font-semibold text-blue-800 hover:text-blue-900 font-mono flex items-center gap-1 uppercase tracking-wide"
-          >
-            [ Complete Registry & Export ]
-          </Link>
+
+          <div className="space-y-2.5">
+            {cases.slice(0, 4).map((c) => (
+              <Link
+                key={c.id}
+                href={`/cases/${c.id}`}
+                className="block p-3 rounded-xs border border-slate-200 hover:border-blue-700 hover:bg-slate-50 transition-all"
+              >
+                <div className="flex items-center justify-between text-[11px] font-mono">
+                  <span className="font-bold text-blue-800">{c.fir_number || c.id}</span>
+                  <span className="px-1.5 py-0.2 rounded-xs text-[10px] font-bold bg-slate-100 text-slate-700 border border-slate-300">
+                    {c.status}
+                  </span>
+                </div>
+                <h4 className="text-xs font-bold text-slate-900 mt-1 line-clamp-1">
+                  {c.title}
+                </h4>
+                <p className="text-[10px] text-slate-500 font-mono mt-1">
+                  {c.jurisdiction}
+                </p>
+              </Link>
+            ))}
+          </div>
         </div>
 
-        <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse font-sans text-xs">
-            <thead>
-              <tr className="bg-slate-50 text-slate-700 text-[10px] font-mono uppercase tracking-wider border-b border-slate-300">
-                <th className="py-2.5 px-3.5 font-bold border-r border-slate-200">EXHIBIT TITLE & IDENTIFIER</th>
-                <th className="py-2.5 px-3.5 font-bold border-r border-slate-200">DOCKET REF (CASE)</th>
-                <th className="py-2.5 px-3.5 font-bold border-r border-slate-200">RECORD CLASS</th>
-                <th className="py-2.5 px-3.5 font-bold border-r border-slate-200">STATUTORY LEVEL</th>
-                <th className="py-2.5 px-3.5 font-bold border-r border-slate-200">INTEGRITY DIGEST</th>
-                <th className="py-2.5 px-3.5 font-bold border-r border-slate-200">BSA 2023 STATUS</th>
-                <th className="py-2.5 px-3.5 font-bold text-right">PROCEDURAL ACTIONS</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-200 text-slate-800">
-              {documents.slice(0, 8).map((doc) => (
-                <tr key={doc.id} className="hover:bg-slate-50 transition-colors">
-                  <td className="py-2.5 px-3.5 border-r border-slate-200">
-                    <div className="font-bold text-slate-900 flex items-center gap-2">
-                      <Link href={`/documents/${doc.id}`} className="hover:text-blue-800 hover:underline">
-                        {doc.title}
-                      </Link>
-                      {doc.is_simulated_tampered && (
-                        <span className="text-[9px] bg-red-100 text-red-900 border border-red-400 px-1 py-0.2 font-mono font-bold uppercase">
-                          TAMPER FLAG
-                        </span>
-                      )}
-                    </div>
-                    <div className="text-[10px] text-slate-500 font-mono mt-0.5">
-                      EXHIBIT ID: {doc.id}
-                    </div>
-                  </td>
+        {/* Right Column: Evidence Exhibits Repository (2/3) */}
+        <div className="lg:col-span-2 bg-white rounded-xs border border-slate-300 shadow-xs p-4 space-y-3">
+          <div className="flex items-center justify-between border-b border-slate-200 pb-2">
+            <h2 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-800 flex items-center gap-1.5">
+              <FolderArchive className="w-3.5 h-3.5 text-teal-700" /> Evidence Exhibits & Chains of Custody
+            </h2>
+            <Link
+              href="/documents"
+              className="text-[11px] font-mono text-blue-700 hover:text-blue-900 font-semibold"
+            >
+              View Repository &rarr;
+            </Link>
+          </div>
 
-                  <td className="py-2.5 px-3.5 font-mono text-[11px] font-bold text-slate-700 border-r border-slate-200">
-                    <Link href={`/cases/${doc.case_id}`} className="hover:text-blue-800 hover:underline">
-                      {doc.case_id}
-                    </Link>
-                  </td>
-
-                  <td className="py-2.5 px-3.5 font-mono text-[10px] text-slate-600 border-r border-slate-200 uppercase font-semibold">
-                    {doc.document_type}
-                  </td>
-
-                  <td className="py-2.5 px-3.5 border-r border-slate-200">
-                    <ClassificationBadge classification={doc.classification} />
-                  </td>
-
-                  <td className="py-2.5 px-3.5 font-mono text-[10px] text-slate-600 border-r border-slate-200">
-                    {doc.current_hash ? `${doc.current_hash.slice(0, 16)}...` : "GENESIS_ROOT"}
-                  </td>
-
-                  <td className="py-2.5 px-3.5 border-r border-slate-200">
-                    <IntegrityBadge
-                      status={doc.status}
-                      isTampered={doc.is_simulated_tampered}
-                    />
-                  </td>
-
-                  <td className="py-2.5 px-3.5 text-right space-x-1.5 whitespace-nowrap">
-                    <button
-                      onClick={() => setVerifyDoc({ id: doc.id, title: doc.title })}
-                      className="px-2 py-1 text-[10px] font-mono font-bold text-blue-900 bg-blue-50 hover:bg-blue-100 border border-blue-400 rounded-xs transition-colors inline-flex items-center gap-1 uppercase"
-                    >
-                      <ShieldCheck className="w-3 h-3 text-blue-700" /> Verify Seal
-                    </button>
-
-                    <Link
-                      href={`/documents/${doc.id}/custody`}
-                      className="px-2 py-1 text-[10px] font-mono font-bold text-slate-800 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded-xs transition-colors inline-flex items-center gap-1 uppercase"
-                    >
-                      Custody Chain
-                    </Link>
-                  </td>
+          <div className="overflow-x-auto">
+            <table className="w-full text-left text-xs font-mono">
+              <thead>
+                <tr className="border-b border-slate-300 text-[10px] text-slate-500 uppercase bg-slate-50">
+                  <th className="p-2">Exhibit / Title</th>
+                  <th className="p-2">Docket</th>
+                  <th className="p-2">Type</th>
+                  <th className="p-2">Integrity Status</th>
+                  <th className="p-2 text-right">Verification</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y divide-slate-200">
+                {documents.slice(0, 6).map((doc) => {
+                  const isTampered = doc.status === "INCIDENT_LOCKED" || doc.is_simulated_tampered;
+                  return (
+                    <tr key={doc.id} className="hover:bg-slate-50 transition-colors">
+                      <td className="p-2">
+                        <Link
+                          href={`/documents/${doc.id}`}
+                          className="font-bold text-slate-900 hover:text-blue-700 block truncate max-w-[200px]"
+                        >
+                          {doc.title}
+                        </Link>
+                        <span className="text-[10px] text-slate-400 block truncate">
+                          {doc.id}
+                        </span>
+                      </td>
+                      <td className="p-2 text-blue-700 font-bold">{doc.case_id}</td>
+                      <td className="p-2 text-slate-600">{doc.document_type}</td>
+                      <td className="p-2">
+                        {isTampered ? (
+                          <span className="px-2 py-0.5 rounded-xs text-[10px] font-bold bg-red-100 text-red-800 border border-red-300">
+                            INCIDENT LOCKED
+                          </span>
+                        ) : (
+                          <span className="px-2 py-0.5 rounded-xs text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
+                            ACTIVE ANCHOR
+                          </span>
+                        )}
+                      </td>
+                      <td className="p-2 text-right">
+                        <button
+                          onClick={() => setVerifyDoc(doc)}
+                          className={`px-2.5 py-1 rounded-xs text-[10px] font-bold uppercase transition-colors border ${
+                            isTampered
+                              ? "bg-red-50 text-red-800 border-red-300 hover:bg-red-100"
+                              : "bg-teal-50 text-teal-800 border-teal-300 hover:bg-teal-100"
+                          }`}
+                        >
+                          Verify Hash
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 
-      {/* Verification Modal Component */}
+      {/* Interactive Integrity Modal */}
       {verifyDoc && (
         <IntegrityModal
           documentId={verifyDoc.id}

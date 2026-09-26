@@ -9,7 +9,7 @@ export default function LoginPage() {
   const router = useRouter();
   const { login, verifyMfa } = useAuth();
 
-  const [email, setEmail] = useState<string>("officer@nyayavault.demo");
+  const [email, setEmail] = useState<string>("officer@nyayraksha.demo");
   const [password, setPassword] = useState<string>("DemoSecurePassword2026!");
   const [tempToken, setTempToken] = useState<string | null>(null);
   const [mfaCode, setMfaCode] = useState<string>("123456");
@@ -74,7 +74,7 @@ export default function LoginPage() {
             Inter-Operable Criminal Justice System
           </h2>
           <p className="text-[11px] text-slate-300 font-sans">
-            NyayaVault — National Repository for Electronic Evidence & Case Dockets
+            NyayRaksha — National Repository for Electronic Evidence & Case Dockets
           </p>
         </div>
 
@@ -107,7 +107,7 @@ export default function LoginPage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="w-full pl-8 pr-3 py-1.5 text-xs font-mono bg-slate-50 border border-slate-300 rounded-xs focus:outline-none focus:ring-1 focus:ring-blue-700"
-                    placeholder="officer@nyayavault.demo"
+                    placeholder="officer@nyayraksha.demo"
                   />
                 </div>
               </div>

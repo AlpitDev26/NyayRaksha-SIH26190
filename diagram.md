@@ -1,4 +1,4 @@
-# NyayaVault — System Architecture & Workflows (SIH26190)
+# NyayRaksha — System Architecture & Workflows (SIH26190)
 
 This document contains the complete **System Architecture** and **End-to-End User Flow Diagrams** for the *Secure Digital Document Management System for Legal and Investigation Documents* (Team StithPragya).
 

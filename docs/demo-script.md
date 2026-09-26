@@ -1,4 +1,4 @@
-# NyayaVault — 5-Minute Hackathon Demonstration Script
+# NyayRaksha — 5-Minute Hackathon Demonstration Script
 
 **Problem Statement ID:** 26190  
 **Title:** Secure Digital Document Management System for Legal and Investigation Documents  
@@ -18,10 +18,10 @@
 
 ### Minute 1: Authentication & Role-Specific Dashboard
 - **Step 1:** Open `http://localhost:3000/login`.
-- **Step 2:** Click the quick-fill button for **Police / Evidence Officer** (`officer@nyayavault.demo`).
+- **Step 2:** Click the quick-fill button for **Police / Evidence Officer** (`officer@nyayraksha.demo`).
 - **Step 3:** Click **Sign In**.
 - **Explanation to Judges:**  
-  *“NyayaVault implements zero-trust RBAC across 8 legal and enforcement roles. Notice that Inspector Sharma's dashboard surfaces only assigned cases, pending evidence custody handovers, and real-time ledger health status.”*
+  *“NyayRaksha implements zero-trust RBAC across 8 legal and enforcement roles. Notice that Inspector Sharma's dashboard surfaces only assigned cases, pending evidence custody handovers, and real-time ledger health status.”*
 
 ---
 
@@ -59,7 +59,7 @@
   - An `IntegrityIncident` ticket is created automatically.
   - Case investigator and Security Admin receive high-priority alerts.
 - **Explanation to Judges:**  
-  *“If an insider or attacker with root database access attempts to alter an evidence file or spoof the database table, NyayaVault's ledger cross-verification instantly catches the anomaly and freezes the asset.”*
+  *“If an insider or attacker with root database access attempts to alter an evidence file or spoof the database table, NyayRaksha's ledger cross-verification instantly catches the anomaly and freezes the asset.”*
 
 ---
 
@@ -67,8 +67,8 @@
 - **Step 15:** Click **"Chain of Custody"** on any document or `/cases/CASE-2026-000101/timeline`.
 - **Step 16:** Walk the judges through the chronological visual timeline showing:
   `CREATED` ➔ `HASHED` ➔ `SCANNED` ➔ `STORED` ➔ `TRANSFERRED` ➔ `VIEWED`.
-- **Step 17:** Switch role in top bar to **Judge** (`judge@nyayavault.demo`).
+- **Step 17:** Switch role in top bar to **Judge** (`judge@nyayraksha.demo`).
 - **Step 18:** Open a pending Court Order, review the SHA-256 confirmation prompt, and click **"Sign Document"** to anchor judicial sign-off on the ledger.
-- **Step 19:** Switch role to **Auditor** (`auditor@nyayavault.demo`) and open `/audit` & `/compliance`. Show the immutable system audit trail and live health checklist.
+- **Step 19:** Switch role to **Auditor** (`auditor@nyayraksha.demo`) and open `/audit` & `/compliance`. Show the immutable system audit trail and live health checklist.
 - **Closing Statement:**  
-  *“NyayaVault delivers a verifiable, tamper-evident judicial backbone ready for Indian law enforcement, courts, and forensic laboratories.”*
+  *“NyayRaksha delivers a verifiable, tamper-evident judicial backbone ready for Indian law enforcement, courts, and forensic laboratories.”*

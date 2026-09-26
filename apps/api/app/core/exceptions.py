@@ -1,12 +1,12 @@
 from fastapi import HTTPException, status
 
 
-class NyayaVaultException(HTTPException):
+class NyayRakshaException(HTTPException):
     def __init__(self, status_code: int, detail: str, error_code: str = "INTERNAL_ERROR"):
         super().__init__(status_code=status_code, detail={"message": detail, "code": error_code})
 
 
-class AuthenticationFailedException(NyayaVaultException):
+class AuthenticationFailedException(NyayRakshaException):
     def __init__(self, detail: str = "Invalid credentials provided"):
         super().__init__(
             status_code=status.HTTP_401_UNAUTHORIZED,
@@ -15,7 +15,7 @@ class AuthenticationFailedException(NyayaVaultException):
         )
 
 
-class PermissionDeniedException(NyayaVaultException):
+class PermissionDeniedException(NyayRakshaException):
     def __init__(self, detail: str = "Access denied: insufficient permissions or case clearance"):
         super().__init__(
             status_code=status.HTTP_403_FORBIDDEN,
@@ -24,7 +24,7 @@ class PermissionDeniedException(NyayaVaultException):
         )
 
 
-class ResourceNotFoundException(NyayaVaultException):
+class ResourceNotFoundException(NyayRakshaException):
     def __init__(self, detail: str = "Requested resource not found"):
         super().__init__(
             status_code=status.HTTP_404_NOT_FOUND,
@@ -33,7 +33,7 @@ class ResourceNotFoundException(NyayaVaultException):
         )
 
 
-class IntegrityValidationFailedException(NyayaVaultException):
+class IntegrityValidationFailedException(NyayRakshaException):
     def __init__(self, detail: str = "Cryptographic integrity verification failed"):
         super().__init__(
             status_code=status.HTTP_409_CONFLICT,
@@ -42,7 +42,7 @@ class IntegrityValidationFailedException(NyayaVaultException):
         )
 
 
-class MalwareDetectedException(NyayaVaultException):
+class MalwareDetectedException(NyayRakshaException):
     def __init__(self, detail: str = "Security scanner rejected file: potential malicious content detected"):
         super().__init__(
             status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,

@@ -5,7 +5,7 @@ import pytest
 async def test_successful_integrity_verification(client):
     login_resp = await client.post(
         "/api/v1/auth/login",
-        json={"email": "officer@nyayavault.demo", "password": "DemoSecurePassword2026!"},
+        json={"email": "officer@nyayraksha.demo", "password": "DemoSecurePassword2026!"},
     )
     token = login_resp.json()["access_token"]
     headers = {"Authorization": f"Bearer {token}"}
@@ -28,7 +28,7 @@ async def test_successful_integrity_verification(client):
 async def test_simulated_tampering_detection_and_lock(client):
     login_resp = await client.post(
         "/api/v1/auth/login",
-        json={"email": "officer@nyayavault.demo", "password": "DemoSecurePassword2026!"},
+        json={"email": "officer@nyayraksha.demo", "password": "DemoSecurePassword2026!"},
     )
     token = login_resp.json()["access_token"]
     headers = {"Authorization": f"Bearer {token}"}

@@ -19,7 +19,7 @@ export function Navbar() {
           <div>
             <div className="flex items-center gap-2">
               <span className="font-serif font-bold text-lg tracking-wide text-slate-100 uppercase">
-                NyayaVault
+                NyayRaksha
               </span>
               <span className="text-[10px] font-mono uppercase bg-slate-800 text-amber-300 border border-amber-700/50 px-1.5 py-0.2 rounded-xs tracking-wider">
                 ICJS SECURE LAYER

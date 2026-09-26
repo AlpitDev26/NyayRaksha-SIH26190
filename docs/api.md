@@ -1,4 +1,4 @@
-# NyayaVault — REST API Reference
+# NyayRaksha — REST API Reference
 
 **Base URL:** `/api/v1`  
 **Authentication:** HttpOnly Cookie (`access_token`) or `Authorization: Bearer <token>`  
@@ -13,7 +13,7 @@
 - **Request Body:**
   ```json
   {
-    "email": "officer@nyayavault.demo",
+    "email": "officer@nyayraksha.demo",
     "password": "DemoSecurePassword2026!"
   }
   ```
@@ -23,7 +23,7 @@
     "status": "AUTHENTICATED",
     "user": {
       "id": "u-officer-01",
-      "email": "officer@nyayavault.demo",
+      "email": "officer@nyayraksha.demo",
       "fullName": "Inspector Rajesh Sharma",
       "role": "POLICE_OFFICER",
       "organization": "Delhi Police Crime Branch"

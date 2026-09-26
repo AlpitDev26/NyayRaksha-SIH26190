@@ -7,7 +7,7 @@ async def test_document_upload_and_blockchain_receipt(client):
     # 1. Login as Officer
     login_resp = await client.post(
         "/api/v1/auth/login",
-        json={"email": "officer@nyayavault.demo", "password": "DemoSecurePassword2026!"},
+        json={"email": "officer@nyayraksha.demo", "password": "DemoSecurePassword2026!"},
     )
     token = login_resp.json()["access_token"]
     headers = {"Authorization": f"Bearer {token}"}

@@ -73,7 +73,7 @@ def generate_totp_secret() -> str:
 
 def get_totp_uri(secret: str, email: str) -> str:
     totp = pyotp.TOTP(secret)
-    return totp.provisioning_uri(name=email, issuer_name="NyayaVault")
+    return totp.provisioning_uri(name=email, issuer_name="NyayRaksha")
 
 
 def verify_totp_code(secret: str, code: str) -> bool:

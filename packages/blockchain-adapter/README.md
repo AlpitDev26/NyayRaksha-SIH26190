@@ -1,4 +1,4 @@
-# NyayaVault Blockchain Adapter & Chaincode
+# NyayRaksha Blockchain Adapter & Chaincode
 
 Problem Statement ID: **26190**  
 Tagline: *“Tamper-evident legal and investigation document management with verifiable chain of custody.”*

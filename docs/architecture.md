@@ -1,4 +1,4 @@
-# NyayaVault — Technical Architecture & System Design
+# NyayRaksha — Technical Architecture & System Design
 
 **Problem Statement ID:** 26190  
 **Title:** Secure Digital Document Management System for Legal and Investigation Documents  
@@ -12,7 +12,7 @@ Legal and forensic systems handle massive, highly sensitive documents: First Inf
 
 Storing large binary files directly on a blockchain causes ledger bloat, severe latency, high operational cost, and irreversible confidentiality hazards (since data on an immutable ledger cannot be redacted or deleted under data privacy regulations).
 
-**NyayaVault implements a strict Hybrid Three-Tier Architecture:**
+**NyayRaksha implements a strict Hybrid Three-Tier Architecture:**
 
 ```
 +-----------------------------------------------------------------------------+
